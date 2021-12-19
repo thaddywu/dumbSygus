@@ -1,31 +1,26 @@
 start testing: 
-	./open_bv_tests/100_100.sl:Passed	1.192177
-	./open_bv_tests/106_100.sl:Passed	8.118008
-	./open_bv_tests/107_100.sl:Passed	33.696893
-	./open_bv_tests/10_100.sl:Passed	7.597469
-	./open_bv_tests/115_100.sl:Passed	0.614436
-	./open_bv_tests/118_100.sl:Passed	4.417305
-	./open_bv_tests/122_100.sl:Passed	13.006834
-	./open_bv_tests/125_100.sl:Passed	7.110805
-	./open_bv_tests/138_100.sl:Passed	6.956448
-	./open_bv_tests/144_100.sl:Passed	36.808546
-	./open_bv_tests/147_100.sl:Passed	2.761049
-	./open_bv_tests/150_100.sl:Invalid format	81.524763
-	./open_bv_tests/17_100.sl:Passed	0.441481
-	./open_bv_tests/18_100.sl:Passed	15.085251
-	./open_bv_tests/26_100.sl:Passed	3.972489
-	./open_bv_tests/28_100.sl:Passed	0.375459
-	./open_bv_tests/31_100.sl:Passed	2.013750
-	./open_bv_tests/40_100.sl:Invalid format	291.195296
-	./open_bv_tests/46_100.sl:Passed	4.216787
-	./open_bv_tests/55_100.sl:Passed	0.404090
-	./open_bv_tests/59_100.sl:Passed	4.608099
-	./open_bv_tests/61_100.sl:Passed	3.626449
-	./open_bv_tests/62_100.sl:Invalid format	31.778621
-	./open_bv_tests/66_100.sl:Passed	15.745852
-	./open_bv_tests/81_100.sl:Invalid format	10.251516
-	./open_bv_tests/83_100.sl:timeout after 300 
-	./open_bv_tests/87_100.sl:Passed	2.435574
-	./open_bv_tests/92_100.sl:timeout after 300 
-	./open_bv_tests/93_100.sl:Passed	3.081608
-	./open_bv_tests/97_100.sl:Passed	10.891509
+	./open_bv_tests/100_100.sl:Passed	1.017866
+	./open_bv_tests/106_100.sl:Passed	7.975114
+	./open_bv_tests/107_100.sl:Passed	31.618427
+	./open_bv_tests/10_100.sl:Passed	7.429867
+	./open_bv_tests/115_100.sl:Passed	0.630319
+	./open_bv_tests/118_100.sl:Passed	4.399796
+	./open_bv_tests/122_100.sl:Passed	12.965572
+	./open_bv_tests/125_100.sl:Passed	6.893851
+	./open_bv_tests/138_100.sl:Passed	6.867390
+	./open_bv_tests/144_100.sl:Passed	36.874444
+	./open_bv_tests/147_100.sl:Passed	2.724635
+	./open_bv_tests/150_100.sl:Passed	24.193663
+	./open_bv_tests/17_100.sl:Passed	0.427937
+	./open_bv_tests/18_100.sl:Passed	15.586324
+	./open_bv_tests/26_100.sl:Passed	3.948755
+	./open_bv_tests/28_100.sl:Passed	0.359089
+	./open_bv_tests/31_100.sl:Passed	1.984559
+	./open_bv_tests/40_100.sl:Wrong Answer	97.333169
+	./open_bv_tests/46_100.sl:Passed	4.368773
+	./open_bv_tests/55_100.sl:Passed	0.421720
+	./open_bv_tests/59_100.sl:Passed	4.654800
+	./open_bv_tests/61_100.sl:Passed	3.760927
+	./open_bv_tests/62_100.sl:Wrong Answer	9.681918
+	./open_bv_tests/66_100.sl:Passed	14.928083
+	./open_bv_tests/81_100.sl:Passed	3.195104

@@ -152,9 +152,19 @@ def select(terms, TC):
     
     return select(terms, TC0) + [best]
 
+def simplifyTerm(terms, testcases):
+    ret, meets = [], []
+    for term in terms:
+        meet = runtest(term, testcases)
+        if sum(meet) > 0:
+            ret.append(term)
+            meets.append(meet)
+    return ret, meets
+
 def decisionTree(terms, decisions, testcases):
-    #print("DecisionTree", len(terms), len(decisions), len(testcases))
-    meets = [runtest(term, testcases) for term in terms]
+    # print("DecisionTree", len(terms), len(decisions), len(testcases))
+    terms, meets = simplifyTerm(terms, testcases)
+
     for i in range(len(terms)):
         if sum(meets[i]) == len(testcases):
             #print("[Return]DecisionTree", len(terms), len(decisions), len(testcases))
@@ -166,16 +176,20 @@ def decisionTree(terms, decisions, testcases):
         r = 1.0 * x / (x + y)
         return -(r * math.log(r) + (1 - r) * math.log(1 - r))
 
-    def decision_score(dc):
+    def decision_score(dc, debug=False):
         tgs = togroup(dc, testcases)
-        score = 1.0
+        score = 0.0
         for i in range(len(terms)):
             cm = [[0, 0], [0, 0]]
             for j in range(len(testcases)):
                 cm[tgs[j]][meets[i][j]] += 1
+            trueBranch = cm[1][0] + cm[1][1]
+            falseBranch = cm[0][0] + cm[0][1]
+            tr = trueBranch / (trueBranch + falseBranch)
+            fr = falseBranch / (trueBranch + falseBranch)
             score += entropy(cm[0][0] + cm[1][0], cm[0][1] + cm[1][1]) - \
-                entropy(cm[0][0], cm[0][1]) - entropy(cm[1][0], cm[1][1])
-                
+                fr * entropy(cm[0][0], cm[0][1]) - tr * entropy(cm[1][0], cm[1][1])
+            if (debug): print(cm)
         return score
     
     best, ds = 0, decision_score(decisions[0])
@@ -191,9 +205,16 @@ def decisionTree(terms, decisions, testcases):
         if tgs[i]: trueTestCases.append(testcases[i])
         else: falseTestCases.append(testcases[i])
 
-    #print(decisions[best])
-    #decision_score(decisions[best], True)
-    #x=str(input())
+    '''
+    print("=================== Meet ================")
+    for meet in meets:
+        print(meet)
+    print("=================== decisions ================")
+    for i in range(0, len(decisions)):
+        print(togroup(decisions[i], testcases))
+    '''
+    #print(meets)
+    # #x=str(input())
 
     trueBranch = decisionTree(terms, decisions, trueTestCases)
     falseBranch = decisionTree(terms, decisions, falseTestCases)
@@ -246,12 +267,11 @@ def unification(terms):
     # search conditions
     thres = 1.7
     decisions = []
-    while thres < 5000:
+    while True:
         decisions = searchDecision(thres)
         if complete(decisions): break
         #print(thres)
         thres *= 1.2
-    
     '''
     for term in terms:
         print(term)
@@ -269,6 +289,7 @@ def unification(terms):
     
 
 def solver(bmExpr):
+
     checker=translator.ReadQuery(bmExpr)
     for constraint in checker.Constraints:
         assert len(constraint[1]) == 3
