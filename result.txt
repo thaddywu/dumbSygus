@@ -24,3 +24,8 @@ start testing:
 	./open_bv_tests/62_100.sl:Wrong Answer	9.681918
 	./open_bv_tests/66_100.sl:Passed	14.928083
 	./open_bv_tests/81_100.sl:Passed	3.195104
+	./open_bv_tests/83_100.sl:timeout after 300 
+	./open_bv_tests/87_100.sl:Passed	2.499754
+	./open_bv_tests/92_100.sl:timeout after 300 
+	./open_bv_tests/93_100.sl:Passed	2.939896
+	./open_bv_tests/97_100.sl:Passed	10.839853

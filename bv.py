@@ -331,3 +331,8 @@ def solver(bmExpr):
             if type(terms) != list: return terms
             return unification(terms)
         thres *= 1.2
+
+# BV Solver Logic
+# 1. Generate terms to cover all testcases
+# 2. Generate conditions. equivalent testcases (can't be distinguished by diff conditions) must be covered by one same term
+# 3. Decision Tree. Choose the most useful division (highest entropy gain), and split testcases into two branches. Useless term (can't represent any testcase) should be deleted
