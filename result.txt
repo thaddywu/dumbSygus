@@ -1,64 +1,151 @@
 start testing: 
-	./open_tests/array_search_10.sl:Passed	11.865968
-	./open_tests/array_search_11.sl:Passed	13.471725
-	./open_tests/array_search_12.sl:Passed	16.039153
-	./open_tests/array_search_13.sl:Passed	20.031293
-	./open_tests/array_search_14.sl:Passed	23.064983
-	./open_tests/array_search_15.sl:Passed	28.373083
-	./open_tests/array_search_2.sl:Passed	1.525982
-	./open_tests/array_search_3.sl:Passed	2.195246
-	./open_tests/array_search_4.sl:Passed	2.865632
-	./open_tests/array_search_5.sl:Passed	3.679716
-	./open_tests/array_search_6.sl:Passed	4.663418
-	./open_tests/array_search_7.sl:Passed	6.033358
-	./open_tests/array_search_8.sl:Passed	8.922163
-	./open_tests/array_search_9.sl:Passed	10.886754
-	./open_tests/max10.sl:timeout after 60 
-	./open_tests/max12.sl:timeout after 60 
-	./open_tests/max13.sl:timeout after 60 
-	./open_tests/max14.sl:timeout after 60 
-	./open_tests/max15.sl:timeout after 60 
-	./open_tests/max2.sl:Passed	1.173215
-	./open_tests/max3.sl:Passed	5.029458
-	./open_tests/max4.sl:Passed	25.835668
-	./open_tests/max5.sl:timeout after 60 
-	./open_tests/max6.sl:timeout after 60 
-	./open_tests/max7.sl:timeout after 60 
-	./open_tests/max8.sl:timeout after 60 
-	./open_tests/max9.sl:timeout after 60 
-	./open_tests/max_11.sl:timeout after 60 
-	./open_tests/s1.sl:timeout after 60 
-	./open_tests/s2.sl:Passed	2.701602
-	./open_tests/s3.sl:Passed	17.905431
-	./open_tests/three.sl:Passed	0.747468
-	./open_tests/tutorial.sl:Passed	6.521405
-	./open_bv_tests/100_100.sl:Passed	0.989817
-	./open_bv_tests/106_100.sl:Passed	8.081533
-	./open_bv_tests/107_100.sl:Passed	33.804163
-	./open_bv_tests/10_100.sl:Passed	8.242924
-	./open_bv_tests/115_100.sl:Passed	0.663046
-	./open_bv_tests/118_100.sl:Passed	4.894084
-	./open_bv_tests/122_100.sl:Passed	13.769684
-	./open_bv_tests/125_100.sl:Passed	6.961054
-	./open_bv_tests/138_100.sl:Passed	7.489966
-	./open_bv_tests/144_100.sl:Passed	40.224379
-	./open_bv_tests/147_100.sl:Passed	2.927954
-	./open_bv_tests/150_100.sl:Passed	26.114821
-	./open_bv_tests/17_100.sl:Passed	0.465137
-	./open_bv_tests/18_100.sl:Passed	19.071397
-	./open_bv_tests/26_100.sl:Passed	3.926915
-	./open_bv_tests/28_100.sl:Passed	0.380356
-	./open_bv_tests/31_100.sl:Passed	2.049041
-	./open_bv_tests/40_100.sl:timeout after 60 
-	./open_bv_tests/46_100.sl:Passed	4.929064
-	./open_bv_tests/55_100.sl:Passed	0.415193
-	./open_bv_tests/59_100.sl:Passed	5.202022
-	./open_bv_tests/61_100.sl:Passed	4.185775
-	./open_bv_tests/62_100.sl:Passed	10.204763
-	./open_bv_tests/66_100.sl:Passed	17.424639
-	./open_bv_tests/81_100.sl:Passed	3.100013
-	./open_bv_tests/83_100.sl:timeout after 60 
-	./open_bv_tests/87_100.sl:Passed	2.438965
-	./open_bv_tests/92_100.sl:timeout after 60 
-	./open_bv_tests/93_100.sl:Passed	3.245752
-	./open_bv_tests/97_100.sl:Passed	13.396454
+	./bv_sygus18/PRE_100_100.sl:Passed	1.022806
+	./bv_sygus18/PRE_101_100.sl:Passed	7.831431
+	./bv_sygus18/PRE_102_100.sl:Passed	10.880285
+	./bv_sygus18/PRE_103_100.sl:Passed	9.703279
+	./bv_sygus18/PRE_104_100.sl:Passed	2.379469
+	./bv_sygus18/PRE_105_100.sl:Passed	2.562172
+	./bv_sygus18/PRE_106_100.sl:Passed	9.226519
+	./bv_sygus18/PRE_107_100.sl:Passed	32.468884
+	./bv_sygus18/PRE_108_100.sl:Passed	13.945764
+	./bv_sygus18/PRE_109_100.sl:timeout after 300 
+	./bv_sygus18/PRE_10_100.sl:Passed	19.781016
+	./bv_sygus18/PRE_110_100.sl:Passed	53.196555
+	./bv_sygus18/PRE_111_100.sl:Passed	1.722179
+	./bv_sygus18/PRE_112_100.sl:Passed	0.504857
+	./bv_sygus18/PRE_113_100.sl:Passed	0.556006
+	./bv_sygus18/PRE_114_100.sl:Passed	3.664220
+	./bv_sygus18/PRE_115_100.sl:Passed	0.646714
+	./bv_sygus18/PRE_116_100.sl:Passed	2.616898
+	./bv_sygus18/PRE_117_100.sl:Passed	0.973333
+	./bv_sygus18/PRE_118_100.sl:Passed	4.537740
+	./bv_sygus18/PRE_119_100.sl:Passed	10.403650
+	./bv_sygus18/PRE_11_100.sl:Passed	0.407956
+	./bv_sygus18/PRE_120_100.sl:Passed	0.361151
+	./bv_sygus18/PRE_121_100.sl:timeout after 300 
+	./bv_sygus18/PRE_122_100.sl:Passed	13.557781
+	./bv_sygus18/PRE_123_100.sl:Passed	3.351928
+	./bv_sygus18/PRE_124_100.sl:Passed	7.220882
+	./bv_sygus18/PRE_125_100.sl:Passed	6.919138
+	./bv_sygus18/PRE_126_100.sl:Passed	23.684852
+	./bv_sygus18/PRE_127_100.sl:Passed	1.072034
+	./bv_sygus18/PRE_128_100.sl:timeout after 300 
+	./bv_sygus18/PRE_129_100.sl:Passed	0.517940
+	./bv_sygus18/PRE_12_100.sl:Passed	10.518106
+	./bv_sygus18/PRE_130_100.sl:Passed	10.068127
+	./bv_sygus18/PRE_131_100.sl:Passed	3.058610
+	./bv_sygus18/PRE_132_100.sl:Passed	23.824153
+	./bv_sygus18/PRE_133_100.sl:Passed	1.878543
+	./bv_sygus18/PRE_134_100.sl:Passed	90.071147
+	./bv_sygus18/PRE_135_100.sl:Passed	2.868361
+	./bv_sygus18/PRE_136_100.sl:Passed	4.717334
+	./bv_sygus18/PRE_137_100.sl:Passed	0.641246
+	./bv_sygus18/PRE_138_100.sl:Passed	7.221976
+	./bv_sygus18/PRE_139_100.sl:Passed	0.606380
+	./bv_sygus18/PRE_13_100.sl:Wrong Answer	93.665750
+	./bv_sygus18/PRE_140_100.sl:Passed	10.636890
+	./bv_sygus18/PRE_141_100.sl:timeout after 300 
+	./bv_sygus18/PRE_142_100.sl:Passed	1.627285
+	./bv_sygus18/PRE_143_100.sl:Passed	171.756665
+	./bv_sygus18/PRE_144_100.sl:Passed	38.040997
+	./bv_sygus18/PRE_145_100.sl:Passed	24.620645
+	./bv_sygus18/PRE_146_100.sl:Wrong Answer	24.619824
+	./bv_sygus18/PRE_147_100.sl:Passed	2.900784
+	./bv_sygus18/PRE_148_100.sl:Passed	4.426372
+	./bv_sygus18/PRE_149_100.sl:Passed	4.312147
+	./bv_sygus18/PRE_14_100.sl:Passed	56.646826
+	./bv_sygus18/PRE_150_100.sl:Passed	25.444882
+	./bv_sygus18/PRE_15_100.sl:Passed	24.745200
+	./bv_sygus18/PRE_16_100.sl:Passed	3.648960
+	./bv_sygus18/PRE_17_100.sl:Passed	0.576351
+	./bv_sygus18/PRE_18_100.sl:Passed	18.887573
+	./bv_sygus18/PRE_19_100.sl:Passed	1.134785
+	./bv_sygus18/PRE_1_100.sl:Passed	9.101849
+	./bv_sygus18/PRE_20_100.sl:Passed	24.826430
+	./bv_sygus18/PRE_21_100.sl:Passed	2.470887
+	./bv_sygus18/PRE_22_100.sl:Passed	1.534821
+	./bv_sygus18/PRE_23_100.sl:Passed	10.856307
+	./bv_sygus18/PRE_24_100.sl:Wrong Answer	25.423883
+	./bv_sygus18/PRE_25_100.sl:Passed	7.802298
+	./bv_sygus18/PRE_26_100.sl:Passed	5.087382
+	./bv_sygus18/PRE_27_100.sl:Passed	27.131936
+	./bv_sygus18/PRE_28_100.sl:Passed	0.393064
+	./bv_sygus18/PRE_29_100.sl:Passed	2.596601
+	./bv_sygus18/PRE_2_100.sl:Wrong Answer	109.858142
+	./bv_sygus18/PRE_30_100.sl:Passed	125.089724
+	./bv_sygus18/PRE_31_100.sl:Passed	2.024899
+	./bv_sygus18/PRE_32_100.sl:Passed	2.830904
+	./bv_sygus18/PRE_33_100.sl:Passed	2.302795
+	./bv_sygus18/PRE_34_100.sl:Passed	2.981978
+	./bv_sygus18/PRE_35_100.sl:Passed	7.167636
+	./bv_sygus18/PRE_36_100.sl:Passed	35.735709
+	./bv_sygus18/PRE_37_100.sl:Passed	8.992269
+	./bv_sygus18/PRE_38_100.sl:Passed	2.554529
+	./bv_sygus18/PRE_39_100.sl:Passed	1.084857
+	./bv_sygus18/PRE_3_100.sl:Passed	1.090934
+	./bv_sygus18/PRE_40_100.sl:Wrong Answer	131.865079
+	./bv_sygus18/PRE_41_100.sl:Passed	1.115971
+	./bv_sygus18/PRE_42_100.sl:Passed	0.560353
+	./bv_sygus18/PRE_43_100.sl:Passed	5.425461
+	./bv_sygus18/PRE_44_100.sl:Passed	0.381041
+	./bv_sygus18/PRE_45_100.sl:Passed	0.695723
+	./bv_sygus18/PRE_46_100.sl:Passed	4.936383
+	./bv_sygus18/PRE_47_100.sl:Passed	9.869233
+	./bv_sygus18/PRE_48_100.sl:Passed	12.909778
+	./bv_sygus18/PRE_49_100.sl:Passed	0.571495
+	./bv_sygus18/PRE_4_100.sl:Passed	0.418348
+	./bv_sygus18/PRE_50_100.sl:Passed	34.190082
+	./bv_sygus18/PRE_51_100.sl:Passed	1.087018
+	./bv_sygus18/PRE_52_100.sl:Passed	1.100591
+	./bv_sygus18/PRE_53_100.sl:Passed	0.655374
+	./bv_sygus18/PRE_54_100.sl:Passed	3.364011
+	./bv_sygus18/PRE_55_100.sl:Passed	0.424345
+	./bv_sygus18/PRE_56_100.sl:Passed	10.406160
+	./bv_sygus18/PRE_57_100.sl:Wrong Answer	94.992395
+	./bv_sygus18/PRE_58_100.sl:Wrong Answer	20.949426
+	./bv_sygus18/PRE_59_100.sl:Passed	4.721481
+	./bv_sygus18/PRE_5_100.sl:Passed	2.702171
+	./bv_sygus18/PRE_60_100.sl:Passed	7.753854
+	./bv_sygus18/PRE_61_100.sl:Passed	3.974457
+	./bv_sygus18/PRE_62_100.sl:Passed	10.502439
+	./bv_sygus18/PRE_63_100.sl:Passed	2.528488
+	./bv_sygus18/PRE_64_100.sl:Passed	3.599122
+	./bv_sygus18/PRE_65_100.sl:Passed	37.387863
+	./bv_sygus18/PRE_66_100.sl:Passed	16.687511
+	./bv_sygus18/PRE_67_100.sl:Passed	159.082031
+	./bv_sygus18/PRE_68_100.sl:Passed	0.976863
+	./bv_sygus18/PRE_69_100.sl:Passed	2.411224
+	./bv_sygus18/PRE_6_100.sl:Passed	10.827002
+	./bv_sygus18/PRE_70_100.sl:Passed	0.929662
+	./bv_sygus18/PRE_71_100.sl:timeout after 300 
+	./bv_sygus18/PRE_72_100.sl:Passed	30.248100
+	./bv_sygus18/PRE_73_100.sl:Passed	0.952586
+	./bv_sygus18/PRE_74_100.sl:Passed	5.198137
+	./bv_sygus18/PRE_75_100.sl:Passed	0.580065
+	./bv_sygus18/PRE_76_100.sl:Passed	3.242644
+	./bv_sygus18/PRE_77_100.sl:timeout after 300 
+	./bv_sygus18/PRE_78_100.sl:Passed	2.943302
+	./bv_sygus18/PRE_79_100.sl:timeout after 300 
+	./bv_sygus18/PRE_7_100.sl:Passed	24.760586
+	./bv_sygus18/PRE_80_100.sl:Passed	27.660957
+	./bv_sygus18/PRE_81_100.sl:Passed	3.084329
+	./bv_sygus18/PRE_82_100.sl:Passed	7.430860
+	./bv_sygus18/PRE_83_100.sl:timeout after 300 
+	./bv_sygus18/PRE_84_100.sl:Wrong Answer	31.126853
+	./bv_sygus18/PRE_85_100.sl:Passed	0.439608
+	./bv_sygus18/PRE_86_100.sl:Wrong Answer	27.135737
+	./bv_sygus18/PRE_87_100.sl:Passed	2.344165
+	./bv_sygus18/PRE_88_100.sl:Passed	11.669067
+	./bv_sygus18/PRE_89_100.sl:Wrong Answer	24.201915
+	./bv_sygus18/PRE_8_100.sl:Passed	7.299121
+	./bv_sygus18/PRE_90_100.sl:Passed	1.303502
+	./bv_sygus18/PRE_91_100.sl:Passed	1.020513
+	./bv_sygus18/PRE_92_100.sl:timeout after 300 
+	./bv_sygus18/PRE_93_100.sl:Passed	3.030604
+	./bv_sygus18/PRE_94_100.sl:Passed	2.330518
+	./bv_sygus18/PRE_95_100.sl:timeout after 300 
+	./bv_sygus18/PRE_96_100.sl:Passed	26.133321
+	./bv_sygus18/PRE_97_100.sl:Passed	13.292249
+	./bv_sygus18/PRE_98_100.sl:Wrong Answer	37.785608
+	./bv_sygus18/PRE_99_100.sl:Passed	12.304452
+	./bv_sygus18/PRE_9_100.sl:timeout after 300 
