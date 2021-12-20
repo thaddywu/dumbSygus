@@ -124,6 +124,7 @@ def ReadQuery(bmExpr):
             for constraint in Constraints:
                 spec_smt2.append('(assert %s)' % (toString(constraint[1:])))
             spec_smt2 = '\n'.join(spec_smt2)
+            # print("start here:\n",spec_smt2)
             spec = parse_smt2_string(spec_smt2, decls=dict(self.VarTable))
             spec = And(spec)
             self.solver.add(Not(spec))
@@ -187,16 +188,17 @@ def ReadQuery2(bmExpr):
 
             spec_smt2 = self.AuxFuns
             for constraint in Constraints:
+                # print(constraint[1:])
                 spec_smt2.append('(assert %s)' % (toString(constraint[1:])))
             spec_smt2 = '\n'.join(spec_smt2)
-            print(spec_smt2)
-            ttt = '(define-fun foo0 ((x Int) (y Int)) Int x)\n(assert (not (exists ((tmp0 Int)) (and (and (and (and true (>= (foo0 x y) x)) (>= (foo0 x y) y)) (or (= x (foo0 x y)) (= y (foo0 x y)))) (= tmp0 (foo0 x y))))))'
-            tttt = parse_smt2_string(ttt, decls=dict(self.VarTable))
-            print(tttt)
+            # print(spec_smt2)
+            # ttt = '(define-fun foo0 ((x Int) (y Int)) Int x)\n(assert (not (exists ((tmp0 Int)) (and (and (and (and true (>= (foo0 x y) x)) (>= (foo0 x y) y)) (or (= x (foo0 x y)) (= y (foo0 x y)))) (= tmp0 (foo0 x y))))))'
+            # tttt = parse_smt2_string(ttt, decls=dict(self.VarTable))
+            # print(tttt)
             spec = parse_smt2_string(spec_smt2, decls=dict(self.VarTable))
             # print("1:",spec)
             spec = And(spec)
-            print("2:",spec)
+            # print("2:",spec)
             self.solver.add(spec)
             if verbose:
                 print("spec:", spec)
