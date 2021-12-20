@@ -1,3 +1,4 @@
+from re import T
 import sys
 import sexp
 import pprint
@@ -5,27 +6,71 @@ import translator
 import evaluator
 from queue import PriorityQueue
 import math
+import random
 
 q = PriorityQueue()
 
 testcases = []
 
-bitvecShape = ['BitVec', ('Int', 64)]
 argList = []
-StartSym = 'My-Start-Symbol'
-Productions = {StartSym: []}
+arg2call = dict()
+call2arg = dict()
+Productions = {}
 
-def getBitvector(bv):
-    type, item = bv
-    # assert type == bitvecShape
-    return int(item)
+callExpr = None
+checker = None
+
+def substitute(prog, term):
+    if type(prog) != list: return prog
+    if prog == callExpr: return term
+    return [substitute(item, term) for item in prog]
+
+def inputMatch(tc):
+    newc = []
+    for arg, value in zip(call2arg.keys(), tc):
+        if len(newc) > 0:
+            newc = ["and", newc, ["=", arg, ("Int", value)]]
+        else:
+            newc = ["=", arg, ("Int", value)]
+    return newc
+
+def generateValidInputs(TN = 50):
+    #for i in range(TN):
+    #    testcases.append([random.randint(-100, 100) for j in range(len(argList))])
+    #return True
+
+    MagicNumber = ("Int", -19260817)
+    
+    inputList = None
+
+    for i in range(TN):
+        subSpec = substitute(checker.Spec, MagicNumber)
+        if inputList is None:
+            model = checker.mycheck(["not", subSpec])
+        else:
+            model = checker.mycheck(["and", ["not", inputList], ["not", subSpec]])
+        if model is None: return False # no more input
+
+        tc = resolve(model)
+        testcases.append(tc)
+
+        inputList = inputMatch(tc) if inputList is None else ["or", inputList, inputMatch(tc)]
+    
+    #print(testcases)
+    return True
+
+
+def runtestOne(prog, tc):
+    # print("Run test", prog, tc)
+    retVar = ("Int", evaluator.evaluate(prog, dict(zip(argList, tc))))
+    subSpec = substitute(checker.Spec, retVar)
+    # print(subSpec, dict(zip(call2arg.keys(), tc)))
+    return checker.mycheck(["and", subSpec, inputMatch(tc)]) is not None
 
 def runtest(prog, TC=testcases):
     result = []
     for tc in TC:
-        args, std = tc
-        output = evaluator.evaluate(prog, dict(zip(argList, args)))
-        result.append(int(output == std))
+        result.append(runtestOne(prog, tc))
     return result
 
 def getMnemonic(stmts):
@@ -53,7 +98,7 @@ def Extend(Stmts, Productions, cost):
             return ret
     return ret
 
-def search(thres):
+def search(thres, intSymbol):
     q = PriorityQueue()
     q2format = {}
     inQueue = set()
@@ -65,7 +110,7 @@ def search(thres):
         q.put((cost, token))
         inQueue.add(token)
         
-    qadd(1.0, [StartSym])
+    qadd(1.0, [intSymbol])
 
     tn = len(testcases)
     cover = [0 for i in range(tn)]
@@ -80,7 +125,7 @@ def search(thres):
             ans = FuncDefineStr[:-1] + " " + progToken + FuncDefineStr[-1]
             rs = runtest(prog)
             score = sum(rs)
-            if score == tn: return ans, True
+            #if score == tn: return ans, True
             if score > 0:
                 for i in range(tn):
                     if rs[i]: cover[i] = 1
@@ -98,11 +143,11 @@ def togroup(prog, testcases):
     # devide testcases
     ret = []
     for tc in testcases:
-        output = evaluator.evaluate(prog, dict(zip(argList, tc[0])))
-        ret.append(int(output == 1))
+        output = evaluator.evaluate(prog, dict(zip(argList, tc)))
+        ret.append(int(output))
     return ret
 
-def searchDecision(thres, TC=testcases):
+def searchDecision(thres, boolSymbol):
     # generate conditions to divide exprs into groups
     q = PriorityQueue()
     q2format = {}
@@ -114,19 +159,20 @@ def searchDecision(thres, TC=testcases):
         q2format[token] = prog
         q.put((cost, token))
         inQueue.add(token)
-        
-    qadd(1.0, [StartSym])
+    
+    qadd(1.0, [boolSymbol])
+    #print(boolSymbol)
 
     tn = len(testcases)
     terms = []
     while not q.empty():
         cost, progToken = q.get()
         prog = q2format[progToken]
-        # print(cost, ":", progToken)
-        # x=str(input())
+        #print(cost, ":", progToken)
+        #x=str(input())
         TryExtend = Extend(prog, Productions, cost)
         if len(TryExtend) == 0:
-            rs = togroup(prog, TC)
+            rs = togroup(prog, testcases)
             score = sum(rs)
             if score > 0 and score < tn:
                 terms.append(prog)
@@ -189,7 +235,7 @@ def decisionTree(terms, decisions, testcases):
             fr = falseBranch / (trueBranch + falseBranch)
             score += entropy(cm[0][0] + cm[1][0], cm[0][1] + cm[1][1]) - \
                 fr * entropy(cm[0][0], cm[0][1]) - tr * entropy(cm[1][0], cm[1][1])
-            if (debug): print(cm)
+            #if (debug): print(cm)
         return score
     
     best, ds = 0, decision_score(decisions[0])
@@ -219,13 +265,13 @@ def decisionTree(terms, decisions, testcases):
     trueBranch = decisionTree(terms, decisions, trueTestCases)
     falseBranch = decisionTree(terms, decisions, falseTestCases)
     
-    ret = ['if0', decisions[best], trueBranch, falseBranch]
+    ret = ['ite', decisions[best], trueBranch, falseBranch]
     #print("[Return]DecisionTree", len(terms), len(decisions), len(testcases))
     #print(ret)
     return ret
 
-def unification(terms):
-    # terms = select(terms, testcases)
+def unification(terms, boolSymbol):
+    #terms = select(terms, testcases)
     meets = [runtest(term, testcases) for term in terms]
 
     def complete(conditions):
@@ -265,10 +311,10 @@ def unification(terms):
                 
 
     # search conditions
-    thres = 1.7
+    thres = 1.4
     decisions = []
     while True:
-        decisions = searchDecision(thres)
+        decisions = searchDecision(thres, boolSymbol)
         if complete(decisions): break
         #print(thres)
         thres *= 1.2
@@ -282,25 +328,33 @@ def unification(terms):
     '''
     
     #print(len(terms), len(decisions), len(testcases))
+
     prog = decisionTree(terms, decisions, testcases)
     progToken = translator.toString(prog)
     ans = FuncDefineStr[:-1] + " " + progToken + FuncDefineStr[-1]
+    model = checker.check(ans)
+
+    if model is not None:
+        tc = resolve(model)
+        #print(tc, evaluator.evaluate(prog, dict(zip(argList, tc))))
+        #print(progToken)
+        testcases.append(tc)
+        return None
     return ans
-    
 
-def solver(bmExpr):
+def resolve(model):
+    tc = []
+    for arg in argList:
+        x = checker.VarTable[arg2call[arg]]
+        tc.append(model.eval(x, True).as_long())
+    return tc
 
+def solver(bmExpr, intSymbol, boolSymbol, _callExpr):
+    global callExpr
+    callExpr = _callExpr
+
+    global checker
     checker=translator.ReadQuery(bmExpr)
-    for constraint in checker.Constraints:
-        assert len(constraint[1]) == 3
-        assert constraint[1][0] == "="
-        assert constraint[1][1][0] == checker.synFunction.name
-        args = []
-        for arg in constraint[1][1][1:]:
-            args += [getBitvector(arg)]
-
-        std = getBitvector(constraint[1][2])
-        testcases.append((args, std))
     
     synExpr = None
     for expr in bmExpr:
@@ -308,31 +362,28 @@ def solver(bmExpr):
             synExpr = expr
     for arg in synExpr[2]:
         argList.append(arg[0])
+    
+    global arg2call
+    arg2call = dict(zip(argList, callExpr[1:]))
+    global call2arg
+    call2arg = dict(zip(callExpr[1:], argList))
 
     global FuncDefineStr
     FuncDefineStr = translator.toString(['define-fun'] + synExpr[1:4], ForceBracket = True)
 
-    Type = {StartSym:synExpr[3]}
-
     for noterm in synExpr[4]: #SynFunExpr[4] is the production rules
-        noname, notype = noterm[0], noterm[1]
-        if notype == Type[StartSym]:
-            Productions[StartSym].append(noname)
-        Type[noname] = notype
-        Productions[noname] = noterm[2]
-    
-    # print(Productions)
+        Productions[noterm[0]] = noterm[2]
+    generateValidInputs(100)
+    #for tc in testcases:
+    #    print(tc)
 
-    thres = 1.1
     while True:
-        terms, oneshot = search(thres)
-        # print(thres)
-        if oneshot:
-            if type(terms) != list: return terms
-            return unification(terms)
-        thres *= 1.2
-
-# BV Solver Logic
-# 1. Generate terms to cover all testcases
-# 2. Generate conditions. equivalent testcases (can't be distinguished by diff conditions) must be covered by one same term
-# 3. Decision Tree. Choose the most useful division (highest entropy gain), and split testcases into two branches. Useless term (can't represent any testcase) should be deleted
+        thres = 1.1
+        while True:
+            terms, oneshot = search(thres, intSymbol)
+            if oneshot:
+                #print(thres, terms)
+                ans = unification(terms, boolSymbol)
+                if ans is None: break
+                return ans
+            thres *= 1.2

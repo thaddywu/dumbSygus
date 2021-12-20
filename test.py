@@ -15,6 +15,7 @@ mainprogram = "./main.py"
 testroot = "./"
 open_bv_tests = testroot + "open_bv_tests/"
 open_tests = testroot + "open_tests/"
+bv_sygus = testroot + "bv_sygus18/"
 tmp_test = testroot + "tmp.sl"
 
 
@@ -125,14 +126,14 @@ def my_test(cmd, outputfile, testname, timeout=300):
 
 
 if __name__ == "__main__":
-    timeout = 300
+    timeout = 60
     testresultfile = "result.txt"
     outfile = open(testresultfile, "w")
     toexe = mainprogram+" "
     outfile.write( "start testing: \n")
     cmd = "python3 "
 
-    for j, testgroup in enumerate([open_bv_tests]):
+    for j, testgroup in enumerate([open_tests, open_bv_tests]):
         for test in os.listdir(testgroup):
             arg = testgroup + test
             s = my_test(cmd + toexe, outfile, arg, timeout)

@@ -117,6 +117,10 @@ def ReadQuery(bmExpr):
 
             self.solver = Solver()
 
+            self.Spec = None
+            for c in Constraints:
+                self.Spec = ["and", self.Spec, c[1:]] if self.Spec else c[1:]
+
         def check(self, funcDefStr):
             self.solver.push()
 
@@ -127,6 +131,30 @@ def ReadQuery(bmExpr):
             spec = parse_smt2_string(spec_smt2, decls=dict(self.VarTable))
             spec = And(spec)
             self.solver.add(Not(spec))
+            if verbose:
+                print("spec:", spec)
+
+            res = self.solver.check()
+            if res == unsat:
+                self.solver.pop()
+                return None
+            else:
+                model = self.solver.model()
+                self.solver.pop()
+
+                return model
+
+        def mycheck(self, keysmt):
+            self.solver.push()
+
+            spec_smt2 = self.AuxFuns.copy()
+            
+            spec_smt2.append('(assert %s)' % (toString([keysmt])))
+            spec_smt2 = '\n'.join(spec_smt2)
+            spec = parse_smt2_string(spec_smt2, decls=dict(self.VarTable))
+            spec = And(spec)
+            
+            self.solver.add(spec)
             if verbose:
                 print("spec:", spec)
 

@@ -15,7 +15,10 @@ def evaluate(stmts, args):
         elif mnemonic == "+": return (evaluate(stmts[1], args) + evaluate(stmts[2], args))
         elif mnemonic == "-": return (evaluate(stmts[1], args) - evaluate(stmts[2], args))
         elif mnemonic == "*": return (evaluate(stmts[1], args) * evaluate(stmts[2], args))
-        elif mnemonic == "mod": return (evaluate(stmts[1], args) % evaluate(stmts[2], args))
+        elif mnemonic == "=": return (evaluate(stmts[1], args) == evaluate(stmts[2], args))
+        elif mnemonic == "mod":
+            x, y = evaluate(stmts[1], args), evaluate(stmts[2], args)
+            return x % y if y != 0 else 19260817
         elif mnemonic == "shr1": return (evaluate(stmts[1], args) >> 1)
         elif mnemonic == "shr4": return (evaluate(stmts[1], args) >> 4)
         elif mnemonic == "shr16": return (evaluate(stmts[1], args) >> 16)

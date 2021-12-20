@@ -1,31 +1,64 @@
 start testing: 
-	./open_bv_tests/100_100.sl:Passed	1.017866
-	./open_bv_tests/106_100.sl:Passed	7.975114
-	./open_bv_tests/107_100.sl:Passed	31.618427
-	./open_bv_tests/10_100.sl:Passed	7.429867
-	./open_bv_tests/115_100.sl:Passed	0.630319
-	./open_bv_tests/118_100.sl:Passed	4.399796
-	./open_bv_tests/122_100.sl:Passed	12.965572
-	./open_bv_tests/125_100.sl:Passed	6.893851
-	./open_bv_tests/138_100.sl:Passed	6.867390
-	./open_bv_tests/144_100.sl:Passed	36.874444
-	./open_bv_tests/147_100.sl:Passed	2.724635
-	./open_bv_tests/150_100.sl:Passed	24.193663
-	./open_bv_tests/17_100.sl:Passed	0.427937
-	./open_bv_tests/18_100.sl:Passed	15.586324
-	./open_bv_tests/26_100.sl:Passed	3.948755
-	./open_bv_tests/28_100.sl:Passed	0.359089
-	./open_bv_tests/31_100.sl:Passed	1.984559
-	./open_bv_tests/40_100.sl:Wrong Answer	97.333169
-	./open_bv_tests/46_100.sl:Passed	4.368773
-	./open_bv_tests/55_100.sl:Passed	0.421720
-	./open_bv_tests/59_100.sl:Passed	4.654800
-	./open_bv_tests/61_100.sl:Passed	3.760927
-	./open_bv_tests/62_100.sl:Wrong Answer	9.681918
-	./open_bv_tests/66_100.sl:Passed	14.928083
-	./open_bv_tests/81_100.sl:Passed	3.195104
-	./open_bv_tests/83_100.sl:timeout after 300 
-	./open_bv_tests/87_100.sl:Passed	2.499754
-	./open_bv_tests/92_100.sl:timeout after 300 
-	./open_bv_tests/93_100.sl:Passed	2.939896
-	./open_bv_tests/97_100.sl:Passed	10.839853
+	./open_tests/array_search_10.sl:Passed	11.865968
+	./open_tests/array_search_11.sl:Passed	13.471725
+	./open_tests/array_search_12.sl:Passed	16.039153
+	./open_tests/array_search_13.sl:Passed	20.031293
+	./open_tests/array_search_14.sl:Passed	23.064983
+	./open_tests/array_search_15.sl:Passed	28.373083
+	./open_tests/array_search_2.sl:Passed	1.525982
+	./open_tests/array_search_3.sl:Passed	2.195246
+	./open_tests/array_search_4.sl:Passed	2.865632
+	./open_tests/array_search_5.sl:Passed	3.679716
+	./open_tests/array_search_6.sl:Passed	4.663418
+	./open_tests/array_search_7.sl:Passed	6.033358
+	./open_tests/array_search_8.sl:Passed	8.922163
+	./open_tests/array_search_9.sl:Passed	10.886754
+	./open_tests/max10.sl:timeout after 60 
+	./open_tests/max12.sl:timeout after 60 
+	./open_tests/max13.sl:timeout after 60 
+	./open_tests/max14.sl:timeout after 60 
+	./open_tests/max15.sl:timeout after 60 
+	./open_tests/max2.sl:Passed	1.173215
+	./open_tests/max3.sl:Passed	5.029458
+	./open_tests/max4.sl:Passed	25.835668
+	./open_tests/max5.sl:timeout after 60 
+	./open_tests/max6.sl:timeout after 60 
+	./open_tests/max7.sl:timeout after 60 
+	./open_tests/max8.sl:timeout after 60 
+	./open_tests/max9.sl:timeout after 60 
+	./open_tests/max_11.sl:timeout after 60 
+	./open_tests/s1.sl:timeout after 60 
+	./open_tests/s2.sl:Passed	2.701602
+	./open_tests/s3.sl:Passed	17.905431
+	./open_tests/three.sl:Passed	0.747468
+	./open_tests/tutorial.sl:Passed	6.521405
+	./open_bv_tests/100_100.sl:Passed	0.989817
+	./open_bv_tests/106_100.sl:Passed	8.081533
+	./open_bv_tests/107_100.sl:Passed	33.804163
+	./open_bv_tests/10_100.sl:Passed	8.242924
+	./open_bv_tests/115_100.sl:Passed	0.663046
+	./open_bv_tests/118_100.sl:Passed	4.894084
+	./open_bv_tests/122_100.sl:Passed	13.769684
+	./open_bv_tests/125_100.sl:Passed	6.961054
+	./open_bv_tests/138_100.sl:Passed	7.489966
+	./open_bv_tests/144_100.sl:Passed	40.224379
+	./open_bv_tests/147_100.sl:Passed	2.927954
+	./open_bv_tests/150_100.sl:Passed	26.114821
+	./open_bv_tests/17_100.sl:Passed	0.465137
+	./open_bv_tests/18_100.sl:Passed	19.071397
+	./open_bv_tests/26_100.sl:Passed	3.926915
+	./open_bv_tests/28_100.sl:Passed	0.380356
+	./open_bv_tests/31_100.sl:Passed	2.049041
+	./open_bv_tests/40_100.sl:timeout after 60 
+	./open_bv_tests/46_100.sl:Passed	4.929064
+	./open_bv_tests/55_100.sl:Passed	0.415193
+	./open_bv_tests/59_100.sl:Passed	5.202022
+	./open_bv_tests/61_100.sl:Passed	4.185775
+	./open_bv_tests/62_100.sl:Passed	10.204763
+	./open_bv_tests/66_100.sl:Passed	17.424639
+	./open_bv_tests/81_100.sl:Passed	3.100013
+	./open_bv_tests/83_100.sl:timeout after 60 
+	./open_bv_tests/87_100.sl:Passed	2.438965
+	./open_bv_tests/92_100.sl:timeout after 60 
+	./open_bv_tests/93_100.sl:Passed	3.245752
+	./open_bv_tests/97_100.sl:Passed	13.396454
