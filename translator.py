@@ -137,8 +137,78 @@ def ReadQuery(bmExpr):
             else:
                 model = self.solver.model()
                 self.solver.pop()
-
                 return model
 
     checker = Checker(VarTable, synFunction, Constraints, AuxFuns)
+    return checker
+
+
+def ReadQuery2(bmExpr):
+    VarDecMap = {}
+    Constraints = []
+    FunDefMap = {}
+    AuxFuns = []
+    for expr in bmExpr:
+        if len(expr) == 0:
+            continue
+        elif expr[0] == 'synth-fun':
+            continue
+        elif expr[0] == 'declare-var':
+            VarDecMap[expr[1]] = expr
+        elif expr[0] == 'constraint':
+            Constraints.append(expr)
+        elif expr[0] == 'define-fun':
+            FunDefMap[expr[1]] = expr
+            AuxFuns.append(toString(expr, ForceBracket=True))
+
+    if verbose:
+        print(VarDecMap)
+        print(FunDefMap)
+        print(Constraints)
+
+    VarTable = {}
+    # Declare Var
+    for var in VarDecMap:
+        VarTable[var] = DeclareVar(VarDecMap[var][2], var)
+
+    class Checker:
+        def __init__(self, VarTable, Constraints, AuxFuns):
+
+            self.VarTable = VarTable
+
+            self.Constraints = Constraints
+
+            self.AuxFuns = AuxFuns
+
+            self.solver = Solver()
+
+        def check(self):
+            self.solver.push()
+
+            spec_smt2 = self.AuxFuns
+            for constraint in Constraints:
+                spec_smt2.append('(assert %s)' % (toString(constraint[1:])))
+            spec_smt2 = '\n'.join(spec_smt2)
+            print(spec_smt2)
+            ttt = '(define-fun foo0 ((x Int) (y Int)) Int x)\n(assert (not (exists ((tmp0 Int)) (and (and (and (and true (>= (foo0 x y) x)) (>= (foo0 x y) y)) (or (= x (foo0 x y)) (= y (foo0 x y)))) (= tmp0 (foo0 x y))))))'
+            tttt = parse_smt2_string(ttt, decls=dict(self.VarTable))
+            print(tttt)
+            spec = parse_smt2_string(spec_smt2, decls=dict(self.VarTable))
+            # print("1:",spec)
+            spec = And(spec)
+            print("2:",spec)
+            self.solver.add(spec)
+            if verbose:
+                print("spec:", spec)
+
+            res = self.solver.check()
+            if res == unsat:
+                self.solver.pop()
+                return None
+            else:
+                model = self.solver.model()
+                self.solver.pop()
+                return model
+
+    checker = Checker(VarTable, Constraints, AuxFuns)
     return checker
